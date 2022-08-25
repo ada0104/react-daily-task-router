@@ -3,16 +3,39 @@ import {
   HashRouter,
   NavLink,
   Route,
-  Routes
+  Routes,
+  useNavigate,
 } from 'react-router-dom';
 
-const Todo = () => {
-  return <p>這是 Todo 頁面
-  </p>;
+const Index = () => {
+  return <p>這裡是首頁</p>;
 };
+
+const Todo = () => {
+  return (
+    <>
+      <p>這是 Todo 頁面</p>
+      <LogOut/>
+    </>
+  );
+};
+
+const LogOut = () => {
+  const navigate = useNavigate();
+  return (
+      <button onClick={() => {
+        navigate('/login')
+      }}
+      >
+        登出
+      </button>
+  )
+};
+
 const Login = () => {
   return <p>這是登入頁面</p>;
 };
+
 const Register = () => {
   return <p>這是註冊頁面</p>;
 };
@@ -36,7 +59,7 @@ function App() {
           </NavLink>
         </div>
         <Routes>
-          <Route path="/" element={<p>這裡是首頁</p>} />
+          <Route path="/" element={<Index />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/todo" element={<Todo />} />
